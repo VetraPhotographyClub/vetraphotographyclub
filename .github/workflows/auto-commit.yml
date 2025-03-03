@@ -23,5 +23,8 @@ jobs:
       - name: Commit and Push Changes
         run: |
           git add .
-          git commit -m "Auto-commit from ChatGPT"
+                - name: Commit and Push Changes
+        run: |
+          git add .
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-commit from ChatGPT"
           git push
