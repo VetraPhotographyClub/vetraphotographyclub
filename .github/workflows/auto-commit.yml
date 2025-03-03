@@ -1,0 +1,27 @@
+name: Auto Commit Bot
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_AUTOMATION_TOKEN }}
+
+      - name: Set Git Config
+        run: |
+          git config --global user.name "VetraBot"
+          git config --global user.email "bot@vetraphotographyclub.com"
+
+      - name: Commit and Push Changes
+        run: |
+          git add .
+          git commit -m "Auto-commit from ChatGPT"
+          git push
