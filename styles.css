@@ -42,3 +42,19 @@ body {
 .glitch {
     animation: glitch 0.1s infinite;
 }
+.typewriter span {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 2px solid white;
+    white-space: nowrap;
+    animation: typing 2s steps(40, end) forwards, blinkCursor 0.8s infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    50% { border-color: transparent; }
+}
