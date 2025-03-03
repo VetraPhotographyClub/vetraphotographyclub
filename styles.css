@@ -58,3 +58,28 @@ body {
 @keyframes blinkCursor {
     50% { border-color: transparent; }
 }
+@keyframes fadeInText {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes morphText {
+    0% { content: "Feeling lost?"; }
+    30% { content: "That’s what the others want."; }
+    60% { content: "But not here."; }
+    100% { content: "We don’t sell your info. They do."; }
+}
+
+.trippy-text::after {
+    content: "Feeling lost?";
+    animation: morphText 6s steps(1) infinite alternate;
+    display: block;
+    font-size: 28px;
+    color: white;
+    text-align: center;
+    margin-top: 20%;
+}
+
+.fade-in {
+    animation: fadeInText 2s ease-in-out forwards;
+}
