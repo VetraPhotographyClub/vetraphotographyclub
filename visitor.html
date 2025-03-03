@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Experience</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="ads">
+        <h2>YOU WON A FREE TRIP!</h2>
+        <h2>LIMITED TIME OFFER!</h2>
+        <h2>CLICK TO CLAIM YOUR PRIZE!</h2>
+    </div>
+    <script>
+        setTimeout(() => {
+            document.getElementById("ads").innerHTML = "<h1>Nope. We don't sell anything.</h1><p>We just send you tips.</p>";
+        }, 3000);
+    </script>
+</body>
+</html>
