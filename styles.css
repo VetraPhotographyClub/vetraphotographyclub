@@ -1,9 +1,19 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    padding: 20px;
-    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
-h1 {
-    color: #007bff;
+#landing {
+    margin-top: 20%;
+}
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+#ads {
+    font-size: 30px;
+    color: red;
+    margin-top: 20%;
 }
