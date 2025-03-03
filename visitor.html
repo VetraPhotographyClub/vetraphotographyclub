@@ -19,6 +19,35 @@
         }, 1000);
     }, 2000);
 </script>
+    <script>
+    function detectDevice() {
+        let userAgent = navigator.userAgent.toLowerCase();
+
+        if (userAgent.includes("iphone")) {
+            showiPhonePopup();
+        } else if (userAgent.includes("android")) {
+            showAndroidPopup();
+        } else {
+            showDesktopPopup();
+        }
+    }
+
+    function showiPhonePopup() {
+        alert("This site wants to send you notifications.");
+    }
+
+    function showAndroidPopup() {
+        alert("You won a prize! Click OK to claim.");
+    }
+
+    function showDesktopPopup() {
+        if (confirm("Your computer may be at risk! Scan now?")) {
+            alert("Redirecting to security scan...");
+        }
+    }
+
+    window.onload = detectDevice;
+</script>
 </head>
 <body>
     <div id="ads">
