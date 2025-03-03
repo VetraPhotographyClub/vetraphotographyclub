@@ -56,9 +56,18 @@
         <h2>CLICK TO CLAIM YOUR PRIZE!</h2>
     </div>
     <script>
+    setTimeout(() => {
+        // Step 1: Remove all ads and turn screen black
+        document.body.style.background = "black";
+        document.body.innerHTML = '<div class="trippy-text fade-in"></div>';
+
+        // Step 2: After 9 seconds, transition into a clean UI
         setTimeout(() => {
-            document.getElementById("ads").innerHTML = "<h1>Nope. We don't sell anything.</h1><p>We just send you tips.</p>";
-        }, 3000);
-    </script>
+            document.body.style.background = "white";
+            document.body.innerHTML = '<h1 style="color:black; text-align:center;">Welcome to Reality.</h1>';
+        }, 9000);
+
+    }, 4000);
+</script>
 </body>
 </html>
