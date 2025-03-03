@@ -17,3 +17,16 @@ button {
     color: red;
     margin-top: 20%;
 }
+body {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
