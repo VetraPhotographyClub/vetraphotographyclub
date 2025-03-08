@@ -20,8 +20,19 @@ body, html {
 }
 
 /* Intro Section */
+.intro {
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 400% 400%;
+    animation: trippyBg 15s infinite alternate ease-in-out;
+}
+
+@keyframes trippyBg {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
 .intro h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1.5s ease, transform 1.5s ease;
@@ -43,10 +54,10 @@ body, html {
 
 /* Morphing Section */
 .morph-section {
-    background: rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
+    background: radial-gradient(circle, rgba(255,0,255,0.3), rgba(0,0,0,1));
 }
 
 #morphingShape {
@@ -60,6 +71,7 @@ body, html {
 .parallax {
     background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/Julia_set_%28highres_01%29.png') no-repeat center center/cover;
     background-attachment: fixed;
+    transform: scale(1.1);
 }
 
 /* Outro */
