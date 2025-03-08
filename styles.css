@@ -1,4 +1,4 @@
-/* General Styles */
+/* General Reset */
 body {
     margin: 0;
     padding: 0;
@@ -7,8 +7,29 @@ body {
     align-items: center;
     height: 100vh;
     background: black;
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     overflow: hidden;
+    touch-action: none; /* Prevent zoom issues */
+}
+
+/* Trippy Fractal Background */
+body::before {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/Julia_set_%28highres_01%29.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    filter: blur(15px);
+    z-index: -1;
+    animation: fractalMove 10s infinite alternate ease-in-out;
+}
+
+@keyframes fractalMove {
+    0% { transform: scale(1.1) rotate(0deg); opacity: 0.3; }
+    100% { transform: scale(1.3) rotate(10deg); opacity: 0.4; }
 }
 
 /* Maze Container */
@@ -20,6 +41,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 15px;
 }
 
 /* Maze Box */
@@ -27,12 +49,15 @@ body {
     position: relative;
     width: 300px;
     height: 400px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 3px solid white;
+    background: rgba(255, 255, 255, 0.05);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
 }
 
 /* The Draggable Orb */
@@ -46,30 +71,39 @@ body {
     left: 10px;
     cursor: grab;
     box-shadow: 0px 0px 15px cyan;
+    transition: transform 0.2s ease-in-out;
 }
 
-/* The Door */
+/* The Door - Flickers Open */
 .door {
     width: 100px;
     height: 20px;
-    background: red;
+    background: rgba(255, 0, 0, 0.8);
     position: absolute;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
+    border-radius: 5px;
     transition: all 0.3s ease-in-out;
+    box-shadow: 0px 0px 15px red;
+}
+
+/* Door Flicker Effect */
+@keyframes flicker {
+    0% { opacity: 0.4; box-shadow: 0px 0px 5px red; }
+    100% { opacity: 1; box-shadow: 0px 0px 20px red; }
 }
 
 /* The Goal */
 .goal {
     width: 50px;
     height: 50px;
-    background: lime;
+    background: linear-gradient(45deg, lime, cyan);
     position: absolute;
     bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
-    box-shadow: 0px 0px 10px lime;
+    box-shadow: 0px 0px 20px lime;
     border-radius: 50%;
 }
 
@@ -79,6 +113,9 @@ body {
     text-align: center;
     margin-top: 20px;
     font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0px 0px 10px cyan;
 }
 /* Prevent zooming issues */
 body {
