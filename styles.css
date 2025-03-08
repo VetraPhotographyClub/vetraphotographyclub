@@ -80,3 +80,8 @@ body {
     margin-top: 20px;
     font-size: 1.2rem;
 }
+/* Prevent zooming issues */
+body {
+    touch-action: none;
+    overscroll-behavior: contain;
+}
