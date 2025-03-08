@@ -1,85 +1,77 @@
+/* General Reset */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
     margin: 0;
     padding: 0;
-}
-#landing {
-    margin-top: 20%;
-}
-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-}
-#ads {
-    font-size: 30px;
-    color: red;
-    margin-top: 20%;
-}
-body {
-    opacity: 0;
-    animation: fadeIn 1.5s ease-in-out forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@keyframes glitch {
-    0% { transform: translate(0, 0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(2px, -2px); }
-    60% { transform: translate(-3px, 3px); }
-    80% { transform: translate(3px, -3px); }
-    100% { transform: translate(0, 0); }
-}
-
-.glitch {
-    animation: glitch 0.1s infinite;
-}
-.typewriter span {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: black;
     overflow: hidden;
-    border-right: 2px solid white;
-    white-space: nowrap;
-    animation: typing 2s steps(40, end) forwards, blinkCursor 0.8s infinite;
+    font-family: Arial, sans-serif;
 }
 
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
+/* Trippy Background Animation */
+@keyframes backgroundPulse {
+    0% { background-color: #000; }
+    50% { background-color: #111; }
+    100% { background-color: #000; }
 }
 
-@keyframes blinkCursor {
-    50% { border-color: transparent; }
-}
-@keyframes fadeInText {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+body {
+    animation: backgroundPulse 3s infinite alternate ease-in-out;
 }
 
-@keyframes morphText {
-    0% { content: "Feeling lost?"; }
-    30% { content: "That’s what the others want."; }
-    60% { content: "But not here."; }
-    100% { content: "We don’t sell your info. They do."; }
-}
-
-.trippy-text::after {
-    content: "Feeling lost?";
-    animation: morphText 6s steps(1) infinite alternate;
-    display: block;
-    font-size: 28px;
+/* Trippy Welcome Text */
+.trippy-text {
+    font-size: 3rem;
     color: white;
-    text-align: center;
-    margin-top: 20%;
+    text-shadow: 0px 0px 5px cyan, 0px 0px 10px magenta;
+    animation: glitchText 1s infinite alternate;
 }
 
-.fade-in {
-    animation: fadeInText 2s ease-in-out forwards;
+@keyframes glitchText {
+    0% { transform: skewX(-5deg); color: cyan; }
+    100% { transform: skewX(5deg); color: magenta; }
+}
+
+/* Button Container */
+.buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Trippy Buttons */
+.trippy-btn {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(45deg, magenta, cyan);
+    color: black;
+    text-shadow: 0px 0px 10px white;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 0px 10px cyan, 0px 0px 20px magenta;
+}
+
+.trippy-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: hue-rotate(90deg);
+}
+
+/* Button Gravity Effect */
+@keyframes floaty {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateY(0px); }
+}
+
+.trippy-btn:nth-child(1) {
+    animation: floaty 3s infinite ease-in-out;
+}
+.trippy-btn:nth-child(2) {
+    animation: floaty 4s infinite ease-in-out;
 }
