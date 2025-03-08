@@ -1,97 +1,143 @@
-/* Reset */
-body, html {
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-    font-family: 'Helvetica Neue', sans-serif;
-    overflow-x: hidden;
-    background: black;
-    color: white;
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Sections */
-.section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
+/* Body Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #1e1e1e, #3c3c3c);
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-size: cover;
+  transition: background-position 0.2s ease-out;
 }
 
-/* Intro Section */
-.intro {
-    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
-    background-size: 400% 400%;
-    animation: trippyBg 15s infinite alternate ease-in-out;
+/* Header and Navigation */
+header {
+  position: relative;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes trippyBg {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+nav {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  text-align: center;
 }
 
-.intro h1 {
-    font-size: 4rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1.5s ease, transform 1.5s ease;
+nav ul {
+  list-style: none;
 }
 
-.intro p {
-    font-size: 1.5rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 2s ease, transform 2s ease;
+nav ul li {
+  display: inline-block;
+  margin: 0 15px;
 }
 
-.scroll-down {
-    position: absolute;
-    bottom: 10%;
-    font-size: 1.2rem;
-    animation: bounce 2s infinite;
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
-/* Morphing Section */
-.morph-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle, rgba(255,0,255,0.3), rgba(0,0,0,1));
+nav ul li a:hover {
+  color: #ff6f61;
 }
 
+/* Hero Section */
+#hero {
+  position: relative;
+  z-index: 2;
+}
+
+#hero h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+#hero p {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+}
+
+/* Morphing Shape */
 #morphingShape {
-    width: 400px;
-    height: 400px;
-    fill: cyan;
-    transition: all 1s ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.2;
+  pointer-events: none;
 }
 
-/* Parallax Section */
-.parallax {
-    background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/Julia_set_%28highres_01%29.png') no-repeat center center/cover;
-    background-attachment: fixed;
-    transform: scale(1.1);
+/* Main Content Sections */
+main {
+  padding: 60px 20px;
 }
 
-/* Outro */
-.cta-button {
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    background: cyan;
-    color: black;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+section {
+  margin: 40px 0;
 }
 
-.cta-button:hover {
-    background: magenta;
-    transform: scale(1.1);
+section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* Animations */
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+/* Gallery Grid */
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.gallery-item {
+  flex: 1 1 calc(33.333% - 40px);
+  max-width: calc(33.333% - 40px);
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.1);
+}
+
+/* Animation Initial States */
+.fade-in, .slide-in {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in {
+  transform: translateY(20px);
+}
+
+.slide-in {
+  transform: translateX(-20px);
+}
+
+/* Footer Styling */
+footer {
+  background: #111;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9rem;
 }
