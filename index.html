@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vetra Photography Club</title>
+    <title>Vetra - Unlock the Entry</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="trippy-text">Welcome to Vetra</h1>
-        <div class="buttons">
-            <button id="guestBtn" class="trippy-btn">Guest</button>
-            <button id="loginBtn" class="trippy-btn">Login</button>
+    <div class="maze-container">
+        <div class="maze">
+            <div id="dragObject" class="drag-object"></div>
+            <div id="door" class="door"></div>
+            <div id="goal" class="goal"></div>
         </div>
+        <div class="instruction">Drag the orb to the exit, but hold the door open with another finger!</div>
     </div>
 
     <script src="script.js"></script>
