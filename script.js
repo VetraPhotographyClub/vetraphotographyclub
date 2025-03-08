@@ -7,14 +7,37 @@ document.addEventListener("DOMContentLoaded", function () {
     let offsetX, offsetY;
     let isDoorHeld = false;
 
-    // Enable door holding with second touch or mouse
-    door.addEventListener("mousedown", () => isDoorHeld = true);
-    door.addEventListener("mouseup", () => isDoorHeld = false);
+    // Floating animation for orb
+    orb.style.animation = "floatOrb 3s infinite alternate ease-in-out";
+
+    // Door flicker effect
+    function startFlicker() {
+        door.style.animation = "flicker 0.3s infinite alternate";
+    }
+    
+    function stopFlicker() {
+        door.style.animation = "none";
+    }
+
+    // Enable door holding
+    door.addEventListener("mousedown", () => {
+        isDoorHeld = true;
+        startFlicker();
+    });
+    door.addEventListener("mouseup", () => {
+        isDoorHeld = false;
+        stopFlicker();
+    });
+
     door.addEventListener("touchstart", (e) => {
         e.preventDefault();
         isDoorHeld = true;
+        startFlicker();
     });
-    door.addEventListener("touchend", () => isDoorHeld = false);
+    door.addEventListener("touchend", () => {
+        isDoorHeld = false;
+        stopFlicker();
+    });
 
     // Dragging mechanics
     orb.addEventListener("mousedown", (e) => startDrag(e));
@@ -45,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const goalRect = goal.getBoundingClientRect();
         const doorRect = door.getBoundingClientRect();
 
-        // Check if the orb is inside the goal **and** the door is held open
+        // Check if orb is inside the goal AND the door is held open
         if (
             orbRect.left > goalRect.left &&
             orbRect.right < goalRect.right &&
