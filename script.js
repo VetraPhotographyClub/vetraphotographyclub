@@ -1,45 +1,73 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const body = document.body;
-    const text = document.querySelector(".trippy-text");
-    const buttons = document.querySelectorAll(".trippy-btn");
+    const orb = document.getElementById("dragObject");
+    const door = document.getElementById("door");
+    const goal = document.getElementById("goal");
 
-    // Phase 1: Come-up (Faster Pulsing & Colors Shift)
-    setTimeout(() => {
-        body.style.animation = "backgroundPulse 1.5s infinite alternate ease-in-out";
-        text.style.animation = "glitchText 0.1s infinite alternate, fractalGlow 3s infinite alternate ease-in-out";
-    }, 2000);
+    let isDragging = false;
+    let offsetX, offsetY;
+    let isDoorHeld = false;
 
-    // Phase 2: The Breakthrough (Fractal Explosion)
-    setTimeout(() => {
-        body.classList.add("breakthrough");
+    // Enable door holding with second touch or mouse
+    door.addEventListener("mousedown", () => isDoorHeld = true);
+    door.addEventListener("mouseup", () => isDoorHeld = false);
+    door.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        isDoorHeld = true;
+    });
+    door.addEventListener("touchend", () => isDoorHeld = false);
 
-        buttons.forEach(btn => {
-            btn.style.animation = "none"; // Remove floating effect
-            btn.style.transform = "scale(1.5) rotate(20deg)";
-            btn.style.boxShadow = "0px 0px 50px red, 0px 0px 100px yellow";
-        });
+    // Dragging mechanics
+    orb.addEventListener("mousedown", (e) => startDrag(e));
+    orb.addEventListener("touchstart", (e) => startDrag(e.touches[0]));
 
-        text.style.transform = "scale(2) rotate(-5deg)";
-        text.style.textShadow = "0px 0px 50px red, 0px 0px 100px yellow";
+    function startDrag(e) {
+        isDragging = true;
+        offsetX = e.clientX - orb.getBoundingClientRect().left;
+        offsetY = e.clientY - orb.getBoundingClientRect().top;
+    }
 
-    }, 5000);
+    document.addEventListener("mousemove", (e) => drag(e));
+    document.addEventListener("touchmove", (e) => drag(e.touches[0]));
 
-    // Phase 3: The Return (Smooth, Clean UI)
-    setTimeout(() => {
-        body.classList.remove("breakthrough");
-        body.classList.add("peaceful");
+    function drag(e) {
+        if (!isDragging) return;
+        orb.style.left = `${e.clientX - offsetX}px`;
+        orb.style.top = `${e.clientY - offsetY}px`;
 
-        text.style.transition = "all 3s ease-in-out";
-        text.style.textShadow = "none";
-        text.style.color = "black";
+        checkWinCondition();
+    }
 
-        buttons.forEach(btn => {
-            btn.style.transition = "all 3s ease-in-out";
-            btn.style.background = "white";
-            btn.style.color = "black";
-            btn.style.boxShadow = "none";
-            btn.style.transform = "scale(1)";
-        });
+    document.addEventListener("mouseup", () => isDragging = false);
+    document.addEventListener("touchend", () => isDragging = false);
 
-    }, 9000);
+    function checkWinCondition() {
+        const orbRect = orb.getBoundingClientRect();
+        const goalRect = goal.getBoundingClientRect();
+        const doorRect = door.getBoundingClientRect();
+
+        // Check if the orb is inside the goal **and** the door is held open
+        if (
+            orbRect.left > goalRect.left &&
+            orbRect.right < goalRect.right &&
+            orbRect.top > goalRect.top &&
+            orbRect.bottom < goalRect.bottom &&
+            isDoorHeld
+        ) {
+            completePuzzle();
+        }
+
+        // If door is NOT held, block passage
+        if (!isDoorHeld && orbRect.bottom > doorRect.top) {
+            orb.style.top = `${doorRect.top - 45}px`; // Push it back
+        }
+    }
+
+    function completePuzzle() {
+        document.body.style.transition = "all 1.5s ease-in-out";
+        document.body.style.background = "white";
+        
+        setTimeout(() => {
+            window.location.href = "home.html"; // Change to your actual homepage
+        }, 1000);
+    }
 });
