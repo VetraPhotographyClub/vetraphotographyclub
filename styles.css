@@ -79,6 +79,7 @@ nav ul li a:hover {
   transform: translate(-50%, -50%);
   opacity: 0.2;
   pointer-events: none;
+  z-index: -1; /* <-- Add this line */
 }
 
 /* Main Content Sections */
