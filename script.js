@@ -39,5 +39,13 @@ document.addEventListener("DOMContentLoaded", function () {
         morphIndex = (morphIndex + 1) % morphPaths.length;
     }
 
-    setInterval(morphShape, 3000);
+    setInterval(morphShape, 2000);
+
+    // Trippy Background
+    let scrollAmount = 0;
+    window.addEventListener("scroll", () => {
+        scrollAmount = window.scrollY;
+        document.body.style.backgroundPosition = `0px ${scrollAmount * 0.5}px`;
+    });
+
 });
