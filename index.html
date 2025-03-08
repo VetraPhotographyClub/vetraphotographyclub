@@ -3,17 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vetra - Unlock the Entry</title>
+    <title>Vetra Photography Club</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="maze-container">
-        <div class="maze">
-            <div id="dragObject" class="drag-object"></div>
-            <div id="door" class="door"></div>
-            <div id="goal" class="goal"></div>
-        </div>
-        <div class="instruction">Drag the orb to the exit, but hold the door open with another finger!</div>
+
+    <div class="section intro">
+        <h1 class="fade-in">Welcome to Vetra</h1>
+        <p class="fade-in delay">Where Light and Dark Meet</p>
+        <div class="scroll-down">↓ Scroll to Begin ↓</div>
+    </div>
+
+    <div class="section morph-section">
+        <svg id="morphingShape" viewBox="0 0 600 600">
+            <path d="M300,100C380,110,480,190,480,300C480,410,380,490,300,500C220,490,120,410,120,300C120,190,220,110,300,100Z"></path>
+        </svg>
+    </div>
+
+    <div class="section parallax">
+        <h2 class="slide-in">Explore the Unknown</h2>
+    </div>
+
+    <div class="section outro">
+        <h2 class="fade-in">Join the Experience</h2>
+        <button class="cta-button">Enter</button>
     </div>
 
     <script src="script.js"></script>
