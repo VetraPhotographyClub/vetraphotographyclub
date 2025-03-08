@@ -1,0 +1,24 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: 123.123.123.123
+          username: root
+          key: ${{ secrets.DIGITALOCEAN_KEY }}
+          script: |
+            cd /var/www/html
+            git pull
+            sudo systemctl restart nginx
