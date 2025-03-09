@@ -1,82 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photography Club</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concave Cursor Distortion Demo</title>
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      overflow: hidden; /* optional: prevent scrollbars if not needed */
+      height: 100%;
+      width: 100%;
+    }
+    /* Background layer */
+    .distortion-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('my-background.jpg') center/cover no-repeat;
+      pointer-events: none;
+      transform: scale(1);
+      transform-origin: 50% 50%;
+      will-change: transform, filter;
+      transition: transform 0.1s ease-out, filter 0.1s ease-out;
+    }
+    /* Content above the background */
+    .content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+      padding-top: 20%;
+      font-family: sans-serif;
+      font-size: 2rem;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header and Navigation -->
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <!-- Hero Section with Morphing Shape -->
-    <div id="hero">
-      <h1 class="fade-in">Photography Club</h1>
-      <p class="fade-in">Capturing moments in a trippy, creative way.</p>
-      <div id="morphingShape">
-        <svg width="600" height="600" viewBox="0 0 600 600">
-          <path d="M300,100C380,110,480,190,480,300C480,410,380,490,300,500C220,490,120,410,120,300C120,190,220,110,300,100Z" fill="#ff6f61"></path>
-        </svg>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <body>
   <div class="distortion-bg"></div>
   <div class="content">
-    ... your page content ...
+    <p>Move your mouse or drag your finger</p>
+    <p>to see the background warp!</p>
   </div>
-</body>
-  <main>
-    <!-- Gallery Section -->
-    <section id="gallery">
-      <h2 class="slide-in">Gallery</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item fade-in">
-          <img src="images/photo1.jpg" alt="Photo 1">
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="images/photo2.jpg" alt="Photo 2">
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="images/photo3.jpg" alt="Photo 3">
-        </div>
-        <!-- Add more gallery items as needed -->
-      </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about">
-      <h2 class="slide-in">About Us</h2>
-      <p class="fade-in">
-        We are a community of photography enthusiasts exploring creative and innovative ways to capture and share our work. Join us for trippy events, creative sessions, and much more!
-      </p>
-    </section>
+  <script>
+    const bg = document.querySelector('.distortion-bg');
+    let distortionIntensity = 0.98;
+    let blurIntensity = 2;
+    let rafPending = false;
 
-    <!-- Contact Section -->
-    <section id="contact">
-      <h2 class="slide-in">Contact</h2>
-      <p class="fade-in">
-        Reach out at <a href="mailto:info@photoclub.com">info@photoclub.com</a>
-      </p>
-    </section>
-  </main>
+    function applyDistortion(cx, cy) {
+      const ww = window.innerWidth;
+      const wh = window.innerHeight;
+      const originX = (cx / ww) * 100;
+      const originY = (cy / wh) * 100;
+      bg.style.transformOrigin = `${originX}% ${originY}%`;
+      bg.style.transform = `scale(${distortionIntensity})`;
+      bg.style.filter = `blur(${blurIntensity}px)`;
+    }
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Photography Club. All Rights Reserved.</p>
-  </footer>
+    // Mouse move handler
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX, y = e.clientY;
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(() => {
+          rafPending = false;
+          applyDistortion(x, y);
+        });
+      }
+    });
 
-  <!-- Include JavaScript -->
-  <script src="main.js"></script>
+    // Mouse leave => reset
+    document.addEventListener('mouseleave', () => {
+      bg.style.transform = 'scale(1)';
+      bg.style.transformOrigin = '50% 50%';
+      bg.style.filter = 'blur(0)';
+    });
+
+    // Touch move handler
+    document.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      if (!touch) return;
+      const x = touch.clientX, y = touch.clientY;
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(() => {
+          rafPending = false;
+          applyDistortion(x, y);
+        });
+      }
+    }, { passive: true });
+
+    // Touch end => reset
+    document.addEventListener('touchend', () => {
+      bg.style.transform = 'scale(1)';
+      bg.style.transformOrigin = '50% 50%';
+      bg.style.filter = 'blur(0)';
+    }, { passive: true });
+  </script>
 </body>
 </html>
