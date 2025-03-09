@@ -142,3 +142,54 @@ footer {
   text-align: center;
   font-size: 0.9rem;
 }
+/* Dark theme background and base styles */
+body {
+  background: linear-gradient(to bottom, #2c3e50, #000000);  /* dark gradient */
+  color: #fff;  /* light text for contrast */
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* Fixed top navigation bar */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(to right, #222, #444);  /* dark horizontal gradient */
+  padding: 1em 0;
+  z-index: 1000;  /* ensure nav stays on top of other content */
+}
+
+/* Navigation menu list styling (if not already defined) */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+nav li {
+  display: inline-block;
+  margin: 0 1em;
+}
+
+/* Navigation links styling */
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  transition: color 0.3s ease;  /* smooth color transition on hover */
+}
+nav a:hover {
+  color: #ff9800;  /* highlight color on hover (e.g., orange) */
+}
+
+/* Active menu item style (for the current section link) */
+nav a.active {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+/* Ensure page content is not hidden under the fixed nav */
+header, section {
+  padding-top: 70px;  /* adjust if your nav bar is taller/shorter */
+}
