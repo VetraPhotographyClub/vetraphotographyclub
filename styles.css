@@ -193,3 +193,23 @@ nav a.active {
 header, section {
   padding-top: 70px;  /* adjust if your nav bar is taller/shorter */
 }
+/* Make the distortion layer cover the viewport */
+.distortion-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;           /* Allow clicks to pass through */
+  transform: scale(1);           /* initial scale (no distortion) */
+  transform-origin: 50% 50%;     /* default origin at center */
+  transition: transform 0.1s ease-out, filter 0.1s ease-out;
+  /* ^ Optional: small transition for smoother motion */
+}
+.distortion-bg.distort-active {
+  filter: blur(2px); /* will be toggled on when distortion is active */
+}
+.distortion-bg {
+  /* ...other styles... */
+  will-change: transform, filter;
+}
