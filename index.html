@@ -2,100 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Concave Cursor Distortion Demo</title>
-  <style>
-    body, html {
-      margin: 0; padding: 0;
-      overflow: hidden; /* optional: prevent scrollbars if not needed */
-      height: 100%;
-      width: 100%;
-    }
-    /* Background layer */
-    .distortion-bg {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: url('my-background.jpg') center/cover no-repeat;
-      pointer-events: none;
-      transform: scale(1);
-      transform-origin: 50% 50%;
-      will-change: transform, filter;
-      transition: transform 0.1s ease-out, filter 0.1s ease-out;
-    }
-    /* Content above the background */
-    .content {
-      position: relative;
-      z-index: 1;
-      color: white;
-      text-align: center;
-      padding-top: 20%;
-      font-family: sans-serif;
-      font-size: 2rem;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Photography Club official website homepage" />
+  <title>Photography Club – Home</title>
+  <!-- Google Font for modern typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="distortion-bg"></div>
-  <div class="content">
-    <p>Move your mouse or drag your finger</p>
-    <p>to see the background warp!</p>
-  </div>
-
-  <script>
-    const bg = document.querySelector('.distortion-bg');
-    let distortionIntensity = 0.98;
-    let blurIntensity = 2;
-    let rafPending = false;
-
-    function applyDistortion(cx, cy) {
-      const ww = window.innerWidth;
-      const wh = window.innerHeight;
-      const originX = (cx / ww) * 100;
-      const originY = (cy / wh) * 100;
-      bg.style.transformOrigin = `${originX}% ${originY}%`;
-      bg.style.transform = `scale(${distortionIntensity})`;
-      bg.style.filter = `blur(${blurIntensity}px)`;
-    }
-
-    // Mouse move handler
-    document.addEventListener('mousemove', (e) => {
-      const x = e.clientX, y = e.clientY;
-      if (!rafPending) {
-        rafPending = true;
-        requestAnimationFrame(() => {
-          rafPending = false;
-          applyDistortion(x, y);
-        });
-      }
-    });
-
-    // Mouse leave => reset
-    document.addEventListener('mouseleave', () => {
-      bg.style.transform = 'scale(1)';
-      bg.style.transformOrigin = '50% 50%';
-      bg.style.filter = 'blur(0)';
-    });
-
-    // Touch move handler
-    document.addEventListener('touchmove', (e) => {
-      const touch = e.touches[0];
-      if (!touch) return;
-      const x = touch.clientX, y = touch.clientY;
-      if (!rafPending) {
-        rafPending = true;
-        requestAnimationFrame(() => {
-          rafPending = false;
-          applyDistortion(x, y);
-        });
-      }
-    }, { passive: true });
-
-    // Touch end => reset
-    document.addEventListener('touchend', () => {
-      bg.style.transform = 'scale(1)';
-      bg.style.transformOrigin = '50% 50%';
-      bg.style.filter = 'blur(0)';
-    }, { passive: true });
-  </script>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <header class="site-header">
+    <h1>Photography Club</h1>
+    <p class="tagline">Capturing moments together</p>
+  </header>
+  
+  <nav class="main-nav" aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <main id="main" class="content">
+    <section class="hero-section">
+      <h2>Welcome to Our Photography Club</h2>
+      <p>We’re a community of photography enthusiasts who love to share tips, organize photo walks, and showcase our work. Whether you’re a seasoned professional or just starting out, our club offers something for everyone.</p>
+      <p><a href="gallery.html" class="cta-button">Explore Gallery</a></p>
+    </section>
+    
+    <section class="featured-photos">
+      <img src="https://source.unsplash.com/DQPP9rVLYGQ" alt="Photographer taking a photo in an urban street" />
+      <img src="https://source.unsplash.com/YefEvN5CDLY" alt="Silhouette of a photographer with a tripod at dusk" />
+      <img src="https://source.unsplash.com/o2DVsV2PnHE" alt="Woman photographing pink flowers" />
+      <img src="https://source.unsplash.com/jkZs3Oi9pq0" alt="Close-up of a photographer adjusting a camera lens" />
+      <img src="https://source.unsplash.com/jL8QFwnuOcQ" alt="Photographer holding a DSLR camera" />
+      <img src="https://source.unsplash.com/RDxr5k3TUds" alt="Two professional cameras on tripods in a studio setting" />
+    </section>
+  </main>
+  
+  <footer class="site-footer">
+    <p>&copy; 2025 Photography Club. All rights reserved.</p>
+  </footer>
 </body>
 </html>
