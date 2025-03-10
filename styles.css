@@ -1,208 +1,268 @@
-/* Basic Reset and Typography */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Root variables and global styles */
+:root {
+  --slide-width: 300px;  /* base width for coverflow slides (adjustable for responsiveness) */
+}
+html {
+  scroll-behavior: smooth;  /* smooth scrolling for anchor links  [oai_citation_attribution:6‡stackoverflow.com](https://stackoverflow.com/questions/7717527/smooth-scrolling-when-clicking-an-anchor-link#:~:text=html%20%7B%20scroll)*/
 }
 body {
-  font-family: 'Montserrat', sans-serif;
-  line-height: 1.6;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
   color: #333;
-  background: #f5f5f5;
 }
 
-/* Skip Link for Accessibility */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: #000;
+/* Navigation bar */
+nav {
+  background: #333;
   color: #fff;
-  padding: 8px;
-  z-index: 100;
-  transition: top 0.3s;
+  padding: 0.5rem 1rem;
 }
-.skip-link:focus {
-  top: 0;
+nav ul { 
+  list-style: none; 
+  margin: 0; padding: 0; 
+  display: flex; gap: 1rem;
 }
-
-/* Header & Navigation */
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+nav li {
+  /* Ensure list items are inline in flex (no extra styles needed) */
 }
-.logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-.main-nav ul {
-  list-style: none;
-  display: flex;
-}
-.main-nav li {
-  margin-left: 1.5rem;
-}
-.main-nav a {
+nav a {
+  color: #fff;
   text-decoration: none;
-  color: #333;
   font-weight: 500;
-  position: relative;
-  transition: color 0.3s;
 }
-.main-nav a:hover,
-.main-nav a:focus {
-  color: #3F51B5;
-}
-.main-nav a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background: #3F51B5;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s;
-}
-.main-nav a:hover::after,
-.main-nav a:focus::after {
-  transform: scaleX(1);
-  transform-origin: left;
+nav a:hover {
+  text-decoration: underline;
 }
 
-/* Hero Section with Animated Background */
-.hero-section {
+/* Hero banner section */
+.hero-banner {
   position: relative;
-  min-height: 80vh;
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(120deg, #f0f8ff, #fef8f0);  /* light pastel gradient background */
+}
+.hero-banner h1 {
+  font-size: 2.5rem;
+  margin: 0.5rem 0;
+}
+.hero-banner .tagline {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #555;
+  max-width: 600px;
+  margin: 0.5rem auto 0;
+}
+
+/* Morphing blob shape behind the hero heading */
+.blob {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 300px;
+  height: 150px;
+  background: #87CEFA;  /* skyblue color for the blob */
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  animation: morph 6s infinite alternate ease-in-out;
+}
+@keyframes morph {
+  to {
+    /* Animate to an asymmetrical blob shape by varying border-radius per corner */
+    border-radius: 40% 60% 50% 60% / 60% 50% 70% 50%;
+  }
+}
+
+/* Parallax section */
+.parallax {
+  height: 300px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Landscape_with_mountain,_forest_and_lake_with_reflection.jpg') center / cover no-repeat fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   color: #fff;
-  background: linear-gradient(45deg, #3F51B5, #2196F3);
-  animation: gradientShift 8s ease infinite;
+  text-align: center;
 }
-@keyframes gradientShift {
-  0% { background: linear-gradient(45deg, #3F51B5, #2196F3); }
-  50% { background: linear-gradient(45deg, #2196F3, #3F51B5); }
-  100% { background: linear-gradient(45deg, #3F51B5, #2196F3); }
-}
-.hero-content {
+.parallax h2 {
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  text-shadow: 0 0 5px rgba(0,0,0,0.7);
   max-width: 800px;
-  padding: 2rem;
 }
-.typewriter {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  overflow: hidden; 
-  white-space: nowrap;
-  border-right: 3px solid rgba(255,255,255,0.75);
-  animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
-}
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-@keyframes blink-caret {
-  50% { border-color: transparent; }
-}
-.hero-section p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-.cta-button {
-  background: #fff;
-  color: #3F51B5;
-  padding: 0.8rem 1.5rem;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 4px;
-  transition: background 0.3s, transform 0.3s;
-}
-.cta-button:hover,
-.cta-button:focus {
-  background: #e0e0e0;
-  transform: translateY(-3px);
-}
-
-/* Scroll Indicator with Bouncing Arrow */
-.scroll-indicator {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.arrow {
-  display: block;
-  width: 24px;
-  height: 24px;
-  border-bottom: 3px solid #fff;
-  border-right: 3px solid #fff;
-  transform: rotate(45deg);
-  animation: bounce 2s infinite;
-}
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateX(-50%) translateY(0) rotate(45deg);
-  }
-  40% {
-    transform: translateX(-50%) translateY(-10px) rotate(45deg);
-  }
-  60% {
-    transform: translateX(-50%) translateY(-5px) rotate(45deg);
+/* Fix for mobile (disable fixed background on small screens, as many mobile browsers don’t support it well) */
+@media(max-width: 600px) {
+  .parallax {
+    background-attachment: scroll;
   }
 }
 
-/* Featured Photos Collage */
-.featured-photos {
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  background: #fff;
-}
-.featured-photos img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 4px;
-  transition: transform 0.4s, filter 0.4s;
-  filter: grayscale(80%);
-}
-.featured-photos img:hover {
-  transform: scale(1.05);
-  filter: grayscale(0%);
-}
-
-/* Footer */
-.site-footer {
-  background: #333;
-  color: #fff;
+/* Coverflow section and slider */
+.coverflow-section {
+  padding: 2rem 0;
+  overflow: visible;
+  perspective: 1000px;  /* enable 3D perspective for coverflow */
   text-align: center;
+}
+.coverflow-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.coverflow-slider {
+  position: relative;
+  width: 100%;
+  height: 400px;  /* fixed height to accommodate slides (adjust as needed) */
+  margin: 0 auto;
+  overflow: visible;
+}
+/* Each slide (represented by a label linked to a radio input) */
+.coverflow-slider .slide {
+  position: absolute;
+  top: 0;
+  width: var(--slide-width);
+  left: calc(50% - (var(--slide-width) / 2));  /* center the slide in the container */
+  cursor: pointer;
+  transition: transform 0.8s ease;
+  transform-origin: center;
+  /* Optional styling for slide content box (e.g., background and border) */
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 5px;
   padding: 1rem;
-  font-size: 0.9rem;
+}
+/* Slide content styling */
+.coverflow-slider .slide h3 {
+  margin-top: 0;
+}
+.coverflow-slider .slide p {
+  font-size: 0.95rem;
+}
+/* Hide the radio inputs (they will still be functional) */
+input[name="coverflow"] {
+  display: none;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .site-header {
-    flex-direction: column;
-  }
-  .main-nav ul {
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  .hero-content {
-    padding: 1rem;
-  }
+/* Coverflow positions for each slide when a given radio (slide) is checked */
+/* Slide 1 active (checked) */
+#slide1:checked ~ .coverflow-slider label[for="slide1"] { z-index: 3; }
+#slide1:checked ~ .coverflow-slider label[for="slide2"] {
+  transform: translateX(calc(1 * var(--slide-width))) translateZ(-90px) rotateY(-15deg);
+  z-index: 2;
+}
+#slide1:checked ~ .coverflow-slider label[for="slide3"] {
+  transform: translateX(calc(2 * var(--slide-width))) translateZ(-180px) rotateY(-25deg);
+  z-index: 1;
+}
+#slide1:checked ~ .coverflow-slider label[for="slide4"] {
+  transform: translateX(calc(3 * var(--slide-width))) translateZ(-270px) rotateY(-35deg);
+}
+
+/* Slide 2 active */
+#slide2:checked ~ .coverflow-slider label[for="slide1"] {
+  transform: translateX(calc(-1 * var(--slide-width))) translateZ(-90px) rotateY(15deg);
+  z-index: 2;
+}
+#slide2:checked ~ .coverflow-slider label[for="slide2"] { z-index: 3; }
+#slide2:checked ~ .coverflow-slider label[for="slide3"] {
+  transform: translateX(calc(1 * var(--slide-width))) translateZ(-90px) rotateY(-15deg);
+  z-index: 2;
+}
+#slide2:checked ~ .coverflow-slider label[for="slide4"] {
+  transform: translateX(calc(2 * var(--slide-width))) translateZ(-180px) rotateY(-25deg);
+  z-index: 1;
+}
+
+/* Slide 3 active */
+#slide3:checked ~ .coverflow-slider label[for="slide2"] {
+  transform: translateX(calc(-1 * var(--slide-width))) translateZ(-90px) rotateY(15deg);
+  z-index: 2;
+}
+#slide3:checked ~ .coverflow-slider label[for="slide3"] { z-index: 3; }
+#slide3:checked ~ .coverflow-slider label[for="slide4"] {
+  transform: translateX(calc(1 * var(--slide-width))) translateZ(-90px) rotateY(-15deg);
+  z-index: 2;
+}
+#slide3:checked ~ .coverflow-slider label[for="slide1"] {
+  transform: translateX(calc(-2 * var(--slide-width))) translateZ(-180px) rotateY(25deg);
+  z-index: 1;
+}
+
+/* Slide 4 active */
+#slide4:checked ~ .coverflow-slider label[for="slide3"] {
+  transform: translateX(calc(-1 * var(--slide-width))) translateZ(-90px) rotateY(15deg);
+  z-index: 2;
+}
+#slide4:checked ~ .coverflow-slider label[for="slide4"] { z-index: 3; }
+#slide4:checked ~ .coverflow-slider label[for="slide2"] {
+  transform: translateX(calc(-2 * var(--slide-width))) translateZ(-180px) rotateY(25deg);
+  z-index: 1;
+}
+#slide4:checked ~ .coverflow-slider label[for="slide1"] {
+  transform: translateX(calc(-3 * var(--slide-width))) translateZ(-270px) rotateY(35deg);
+}
+
+/* Responsive adjustment for coverflow on small screens: make slides narrower */
+@media(max-width: 600px) {
+  :root { --slide-width: 70vw; }  /* slides take 70% of viewport width */
+  .coverflow-slider { height: 300px; }  /* reduce container height */
+}
+
+/* Gallery page grid */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.gallery img {
+  width: 100%;
+  display: block;
+  background: #ddd;  /* grey background as placeholder */
+  border: 2px solid #fff;
+  border-radius: 3px;
+}
+
+/* Arcade game container (GameBoy frame styling) */
+.game-container {
+  text-align: center;
+  background: #222;
+  display: inline-block;
+  padding: 1rem;
+  border: 4px solid goldenrod;
+  border-radius: 4px;
+}
+.game-container iframe {
+  /* Make the iframe responsive */
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 160 / 144;  /* preserve GameBoy screen aspect ratio */
+}
+
+/* Typography helpers */
+main h1, main h2 {
+  text-align: center;
+  margin: 1rem 0;
+}
+main p {
+  max-width: 600px;
+  margin: 0.5rem auto;
+  line-height: 1.6;
+}
+.small {
+  font-size: 0.9em;
+  color: #555;
+  text-align: center;
+}
+
+/* Scroll animation classes */
+.fade-in, .slide-in-left, .slide-in-right {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.slide-in-left { transform: translateX(-30px); }   /* start slightly left */
+.slide-in-right { transform: translateX(30px); }   /* start slightly right */
+.visible {
+  opacity: 1;
+  transform: none;  /* reset transform when visible */
 }
