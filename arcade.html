@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photography Club – Arcade</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation (same menu) -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="arcade.html">Arcade</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Club Arcade</h1>
+    <p class="slide-in-left">Enjoy a nostalgic GameBoy Color game created for our club members!</p>
+    <div class="game-container slide-in-right">
+      <!-- Embedded GameBoy Color emulator using WasmBoy -->
+      <iframe title="GameBoy Color Game"
+        src="https://wasmboy.app/iframe/?rom-name=Photo%20Quest&rom-url=https://gbhh.avivace.com/database/entries/tobutobugirl/tobu.gb&play-poster=https://gbhh.avivace.com/database/entries/tobutobugirl/screenshot1.bmp" 
+        width="480" height="432" allowfullscreen>
+      </iframe>
+    </div>
+    <p class="small">*Use arrow keys and Z / X for A / B buttons to play.</p>
+  </main>
+
+  <footer class="small">
+    &copy; Photography Club
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
