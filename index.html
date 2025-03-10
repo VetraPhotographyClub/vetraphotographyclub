@@ -3,54 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Join our Photography Club and capture the extraordinary. Explore, learn, and create with our community." />
   <title>Photography Club – Home</title>
-  <!-- Google Font for modern typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to main content</a>
-  
-  <header class="site-header">
-    <h1 class="logo">Photography Club</h1>
-    <nav class="main-nav" aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+
+  <!-- Navigation bar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="arcade.html">Arcade</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Banner -->
+  <header class="hero-banner">
+    <h1>Photography Club</h1>
+    <p class="tagline fade-in">Capturing life’s moments through the lens.</p>
+    <div class="blob"></div>  <!-- decorative morphing blob -->
   </header>
-  
-  <main id="main">
-    <!-- Hero Section with animated background & typewriter effect -->
-    <section class="hero-section">
-      <div class="hero-content">
-        <h2 class="typewriter">Capture the Extraordinary</h2>
-        <p>Join our community and explore photography in a whole new light. Discover, learn, and create with us.</p>
-        <a href="gallery.html" class="cta-button">Explore Gallery</a>
-      </div>
-      <div class="scroll-indicator">
-        <span class="arrow"></span>
-      </div>
-    </section>
-    
-    <!-- Featured Photos Collage -->
-    <section class="featured-photos">
-      <img src="https://source.unsplash.com/featured/?photography,1" alt="Photography shot 1">
-      <img src="https://source.unsplash.com/featured/?photography,2" alt="Photography shot 2">
-      <img src="https://source.unsplash.com/featured/?photography,3" alt="Photography shot 3">
-      <img src="https://source.unsplash.com/featured/?photography,4" alt="Photography shot 4">
-      <img src="https://source.unsplash.com/featured/?photography,5" alt="Photography shot 5">
-      <img src="https://source.unsplash.com/featured/?photography,6" alt="Photography shot 6">
-    </section>
-  </main>
-  
-  <footer class="site-footer">
-    <p>&copy; 2025 Photography Club. All rights reserved.</p>
+
+  <!-- Parallax Showcase -->
+  <section class="parallax">
+    <h2 class="parallax-text">"Photography is the story we fail to put into words."</h2>
+  </section>
+
+  <!-- Coverflow Section (interactive navigation) -->
+  <section class="coverflow-section">
+    <h2>Explore</h2>
+    <!-- Radio inputs for coverflow (hidden) -->
+    <input type="radio" name="coverflow" id="slide1" checked>
+    <input type="radio" name="coverflow" id="slide2">
+    <input type="radio" name="coverflow" id="slide3">
+    <input type="radio" name="coverflow" id="slide4">
+    <!-- Slides (each label corresponds to a radio input) -->
+    <div class="coverflow-slider">
+      <!-- Slide 1: Welcome/Home -->
+      <label for="slide1" class="slide">
+        <h3>Welcome</h3>
+        <p>Welcome to our club! Swipe or use arrows to browse.</p>
+      </label>
+      <!-- Slide 2: Gallery -->
+      <label for="slide2" class="slide">
+        <h3>Gallery</h3>
+        <p>See stunning photos taken by our members.</p>
+        <p class="small">Click to view the Gallery</p>
+      </label>
+      <!-- Slide 3: Arcade -->
+      <label for="slide3" class="slide">
+        <h3>Arcade</h3>
+        <p>Play our retro GameBoy-style photo adventure.</p>
+        <p class="small">Click to enter the Arcade</p>
+      </label>
+      <!-- Slide 4: About -->
+      <label for="slide4" class="slide">
+        <h3>About Us</h3>
+        <p>Learn more about our club’s mission and team.</p>
+        <p class="small">Click to read About us</p>
+      </label>
+    </div>
+  </section>
+
+  <footer class="small">
+    &copy; Photography Club
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
