@@ -1,215 +1,168 @@
-/* Basic Reset */
+/* Base Styles and Accessibility */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
-
-/* Body Styling */
 body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #1e1e1e, #3c3c3c);
-  color: #fff;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.6;
-  overflow-x: hidden;
-  background-size: cover;
-  transition: background-position 0.2s ease-out;
+  color: #333;
+  background: #fff;
 }
-
-/* Header and Navigation */
-header {
-  position: relative;
-  min-height: 100vh;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-nav {
+.skip-link {
   position: absolute;
-  top: 20px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-}
-
-nav ul {
-  list-style: none;
-}
-
-nav ul li {
-  display: inline-block;
-  margin: 0 15px;
-}
-
-nav ul li a {
-  text-decoration: none;
+  top: 0;
+  left: -999px;
+  background: #000;
   color: #fff;
-  font-weight: bold;
-  transition: color 0.3s;
+  padding: 8px;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 0;
 }
 
-nav ul li a:hover {
-  color: #ff6f61;
+/* Header and Tagline */
+.site-header {
+  padding: 2em 1em 3em 1em;
+}
+.site-header h1 {
+  font-size: 2.5em;
+  margin: 0 0 0.2em;
+}
+.site-header .tagline {
+  font-size: 1.2em;
+  color: #555;
+  margin: 0;
+}
+
+/* Navigation Menu (unconventional vertical layout on large screens) */
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.main-nav li {
+  margin: 0.5em 0;
+}
+.main-nav a {
+  color: #333;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+.main-nav a:hover,
+.main-nav a:focus {
+  background: #3F51B5;
+  color: #fff;
+  transform: translateX(-5px);
+}
+.main-nav a:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Position nav on the right side (desktop) */
+.main-nav {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+/* Reserve space on the right to prevent content overlap with nav */
+@media (min-width: 769px) {
+  .site-header,
+  .content {
+    margin-right: 160px;
+  }
 }
 
 /* Hero Section */
-#hero {
-  position: relative;
-  z-index: 2;
+.hero-section {
+  margin: 2em 20% 2em 10%;  /* asymmetrical margins for an off-center layout */
+}
+.hero-section h2 {
+  font-size: 1.8em;
+  margin-top: 0;
+}
+.hero-section p {
+  max-width: 600px;
 }
 
-#hero h1 {
-  font-size: 4rem;
-  margin-bottom: 20px;
-}
-
-#hero p {
-  font-size: 1.5rem;
-  margin-bottom: 40px;
-}
-
-/* Morphing Shape */
-#morphingShape {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.2;
-  pointer-events: none;
-  z-index: -1; /* <-- Add this line */
-}
-
-/* Main Content Sections */
-main {
-  padding: 60px 20px;
-}
-
-section {
-  margin: 40px 0;
-}
-
-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* Gallery Grid */
-.gallery-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.gallery-item {
-  flex: 1 1 calc(33.333% - 40px);
-  max-width: calc(33.333% - 40px);
-  overflow: hidden;
-}
-
-.gallery-item img {
-  width: 100%;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.gallery-item img:hover {
-  transform: scale(1.1);
-}
-
-/* Animation Initial States */
-.fade-in, .slide-in {
-  opacity: 0;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in {
-  transform: translateY(20px);
-}
-
-.slide-in {
-  transform: translateX(-20px);
-}
-
-/* Footer Styling */
-footer {
-  background: #111;
-  padding: 20px;
-  text-align: center;
-  font-size: 0.9rem;
-}
-/* Dark theme background and base styles */
-body {
-  background: linear-gradient(to bottom, #2c3e50, #000000);  /* dark gradient */
-  color: #fff;  /* light text for contrast */
-  margin: 0;
-  font-family: sans-serif;
-}
-
-/* Fixed top navigation bar */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: linear-gradient(to right, #222, #444);  /* dark horizontal gradient */
-  padding: 1em 0;
-  z-index: 1000;  /* ensure nav stays on top of other content */
-}
-
-/* Navigation menu list styling (if not already defined) */
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-nav li {
-  display: inline-block;
-  margin: 0 1em;
-}
-
-/* Navigation links styling */
-nav a {
+/* Call-to-Action Button */
+.cta-button {
+  background: #3F51B5;
   color: #fff;
   text-decoration: none;
-  padding: 0.5em 1em;
-  transition: color 0.3s ease;  /* smooth color transition on hover */
+  padding: 0.6em 1.2em;
+  display: inline-block;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 0.3s;
 }
-nav a:hover {
-  color: #ff9800;  /* highlight color on hover (e.g., orange) */
+.cta-button:hover,
+.cta-button:focus {
+  background: #303F9F;  /* darken on hover/focus */
+}
+.cta-button:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
-/* Active menu item style (for the current section link) */
-nav a.active {
-  color: #ff9800;
-  font-weight: bold;
+/* Featured Photos Collage Grid */
+.featured-photos {
+  margin: 2em 10% 2em 20%;  /* opposite offset to hero for irregular layout */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 200px;
+  gap: 1rem;
 }
-
-/* Ensure page content is not hidden under the fixed nav */
-header, section {
-  padding-top: 70px;  /* adjust if your nav bar is taller/shorter */
+.featured-photos img:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
 }
-/* Make the distortion layer cover the viewport */
-.distortion-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
+.featured-photos img {
   width: 100%;
   height: 100%;
-  pointer-events: none;           /* Allow clicks to pass through */
-  transform: scale(1);           /* initial scale (no distortion) */
-  transform-origin: 50% 50%;     /* default origin at center */
-  transition: transform 0.1s ease-out, filter 0.1s ease-out;
-  /* ^ Optional: small transition for smoother motion */
+  object-fit: cover;
+  border-radius: 4px;
+  filter: grayscale(100%);
+  transition: filter 0.3s;
 }
-.distortion-bg.distort-active {
-  filter: blur(2px); /* will be toggled on when distortion is active */
+.featured-photos img:hover {
+  filter: grayscale(0%);
 }
-.distortion-bg {
-  /* ...other styles... */
-  will-change: transform, filter;
+
+/* Responsive: Stack nav and full-width sections on small screens */
+@media (max-width: 768px) {
+  .main-nav {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin: 1em 0;
+  }
+  .main-nav ul {
+    display: block;
+  }
+  .main-nav li {
+    display: block;
+    margin: 0.5em 0;
+  }
+  .hero-section,
+  .featured-photos {
+    margin: 1em auto;
+    width: 90%;
+  }
+}
+
+/* Footer Styles */
+.site-footer {
+  text-align: center;
+  padding: 1em;
+  background: #f9f9f9;
+  color: #555;
+  font-size: 0.9em;
 }
