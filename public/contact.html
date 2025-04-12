@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Vetra Photography Club</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/timeMachine.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+</head>
+<body class="contact-page" data-scroll-container>
+    <div class="noise-overlay"></div>
+    <div class="three-container" id="background-canvas"></div>
+    
+    <header>
+        <div class="menu-button" id="menu-toggle">
+            <div class="menu-icon">☰</div>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-content">
+            <div class="menu-close">×</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="menu-link">Home</a></li>
+                    <li><a href="meetups.html" class="menu-link">Meetups</a></li>
+                    <li><a href="tips.html" class="menu-link">Tips</a></li>
+                    <li><a href="fun.html" class="menu-link">Fun</a></li>
+                    <li><a href="contact.html" class="menu-link current">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-header tm-reveal">
+            <div class="container">
+                <h1>Get In Touch</h1>
+                <p class="subtitle">Have questions about our club or meetups? Reach out to us.</p>
+            </div>
+        </section>
+
+        <section class="contact-container">
+            <div class="container">
+                <div class="contact-wrapper tm-reveal">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">📧</div>
+                            <div class="info-content">
+                                <h3>Email Us</h3>
+                                <p>hello@vetraphotography.club</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📱</div>
+                            <div class="info-content">
+                                <h3>Call Us</h3>
+                                <p>(555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h3>Visit Us</h3>
+                                <p>123 Photography Lane<br>Studio 4B<br>Creativeville, PH 12345</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📅</div>
+                            <div class="info-content">
+                                <h3>Office Hours</h3>
+                                <p>Tuesday - Saturday<br>10:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <h3>Follow Us</h3>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form-container">
+                        <h2>Send Us a Message</h2>
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <div class="floating-label-group">
+                                    <input type="text" id="name" name="name" required>
+                                    <label for="name">Your Name</label>
+                                    <div class="line"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="floating-label-group">
+                                    <input type="email" id="email" name="email" required>
+                                    <label for="email">Your Email</label>
+                                    <div class="line"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="floating-label-group">
+                                    <select id="subject" name="subject" required>
+                                        <option value="" disabled selected></option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="membership">Membership Information</option>
+                                        <option value="meetup">Meetup Question</option>
+                                        <option value="host">Host a Meetup</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <label for="subject">Subject</label>
+                                    <div class="line"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="floating-label-group">
+                                    <textarea id="message" name="message" rows="5" required></textarea>
+                                    <label for="message">Your Message</label>
+                                    <div class="line"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="submit-button">Send Message</button>
+                            </div>
+                        </form>
+                        <div class="form-success" id="form-success">
+                            <div class="success-icon">✓</div>
+                            <h3>Message Sent!</h3>
+                            <p>Thank you for contacting us. We'll respond as soon as possible.</p>
+                            <button class="back-button" id="back-button">Send Another Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="vetra-ai-container" id="vetra-ai">
+        <div class="vetra-ai-orb" id="vetra-orb">
+            <div class="orb-inner"></div>
+        </div>
+        <div class="vetra-ai-chat" id="vetra-chat">
+            <div class="chat-header">
+                <h3>Vetra AI</h3>
+                <div class="chat-close">×</div>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message assistant">
+                    <p>Hello! I'm Vetra, your photography assistant. How can I help you today?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Ask me anything...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Vetra Photography Club. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/transitions.js"></script>
+    <script src="../js/vetraAI.js"></script>
+
+    <script>
+        // Contact form handling
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contact-form');
+            const formSuccess = document.getElementById('form-success');
+            const backButton = document.getElementById('back-button');
+            
+            if (!contactForm || !formSuccess || !backButton) return;
+            
+            // Floating labels animation
+            const inputs = document.querySelectorAll('.floating-label-group input, .floating-label-group textarea, .floating-label-group select');
+            
+            inputs.forEach(input => {
+                // Check initial state
+                if (input.value.trim() !== '') {
+                    input.parentElement.classList.add('active');
+                }
+                
+                // Add active class on focus
+                input.addEventListener('focus', () => {
+                    input.parentElement.classList.add('active');
+                });
+                
+                // Remove active class on blur if no value
+                input.addEventListener('blur', () => {
+                    if (input.value.trim() === '') {
+                        input.parentElement.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Form submission
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Simulate form submission
+                const submitButton = contactForm.querySelector('.submit-button');
+                submitButton.innerHTML = 'Sending...';
+                submitButton.disabled = true;
+                
+                // After 1.5 seconds, show success message
+                setTimeout(() => {
+                    contactForm.style.display = 'none';
+                    formSuccess.style.display = 'flex';
+                    
+                    // Animate success message
+                    gsap.from(formSuccess, {
+                        y: 30,
+                        opacity: 0,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
+                }, 1500);
+            });
+            
+            // Back button
+            backButton.addEventListener('click', () => {
+                formSuccess.style.display = 'none';
+                contactForm.style.display = 'block';
+                
+                // Reset form
+                contactForm.reset();
+                inputs.forEach(input => {
+                    input.parentElement.classList.remove('active');
+                });
+                
+                // Reset button
+                const submitButton = contactForm.querySelector('.submit-button');
+                submitButton.innerHTML = 'Send Message';
+                submitButton.disabled = false;
+                
+                // Animate form
+                gsap.from(contactForm, {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
+            });
+        });
+    </script>
+
+    <style>
+        /* Contact Page Specific Styles */
+        .page-header {
+            padding: 180px 0 80px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            padding: 50px 0 100px;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(35, 35, 35, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-info {
+            padding: 40px;
+            background: rgba(18, 18, 18, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .info-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .info-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .social-links {
+            margin-top: 40px;
+        }
+
+        .social-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+        }
+
+        .social-icon:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        .contact-form-container {
+            padding: 40px 50px;
+        }
+
+        .contact-form-container h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .contact-form {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .floating-label-group {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .floating-label-group input,
+        .floating-label-group textarea,
+        .floating-label-group select {
+            width: 100%;
+            padding: 15px 0 5px;
+            border: none;
+            background: transparent;
+            color: white;
+            font-family: var(--font-family);
+            font-size: 1rem;
+        }
+
+        .floating-label-group input:focus,
+        .floating-label-group textarea:focus,
+        .floating-label-group select:focus {
+            outline: none;
+        }
+
+        .floating-label-group label {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            color: var(--text-light);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .floating-label-group.active label,
+        .floating-label-group input:focus ~ label,
+        .floating-label-group textarea:focus ~ label,
+        .floating-label-group select:focus ~ label {
+            top: 0;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+        }
+
+        .floating-label-group .line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-label-group .line::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .floating-label-group.active .line::after,
+        .floating-label-group input:focus ~ .line::after,
+        .floating-label-group textarea:focus ~ .line::after,
+        .floating-label-group select:focus ~ .line::after {
+            width: 100%;
+        }
+
+        .submit-button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(30, 144, 255, 0.3);
+        }
+
+        .submit-button:disabled {
+            background: rgba(30, 144, 255, 0.5);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .form-success h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .form-success p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 400px;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-info {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-info,
+            .contact-form-container {
+                padding: 30px;
+            }
+
+            .info-item {
+                flex-direction: column;
+            }
+
+            .info-icon {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .social-icons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</body>
+</html> 

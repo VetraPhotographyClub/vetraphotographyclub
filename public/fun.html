@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun | Vetra Photography Club</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/timeMachine.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+</head>
+<body class="fun-page" data-scroll-container>
+    <div class="noise-overlay"></div>
+    <div class="three-container" id="background-canvas"></div>
+    
+    <header>
+        <div class="menu-button" id="menu-toggle">
+            <div class="menu-icon">☰</div>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-content">
+            <div class="menu-close">×</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="menu-link">Home</a></li>
+                    <li><a href="meetups.html" class="menu-link">Meetups</a></li>
+                    <li><a href="tips.html" class="menu-link">Tips</a></li>
+                    <li><a href="fun.html" class="menu-link current">Fun</a></li>
+                    <li><a href="contact.html" class="menu-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-header tm-reveal">
+            <div class="container">
+                <h1>Fun & Experiments</h1>
+                <p class="subtitle">Play with our interactive tools and photography experiments</p>
+            </div>
+        </section>
+
+        <section class="fun-tools">
+            <div class="container">
+                <div class="tools-grid tm-reveal-list">
+                    <!-- Interactive Tool 1 -->
+                    <div class="tool-card tm-card-3d">
+                        <div class="tool-icon">🎨</div>
+                        <h3>Color Theory Explorer</h3>
+                        <p>Discover complementary color schemes for your photography compositions.</p>
+                        <div class="tool-preview">
+                            <div class="color-wheel" id="color-wheel"></div>
+                        </div>
+                        <div class="tool-footer">
+                            <a href="#" class="tool-button" data-tool="colorTheory">Try It</a>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Tool 2 -->
+                    <div class="tool-card tm-card-3d">
+                        <div class="tool-icon">📐</div>
+                        <h3>Composition Grid</h3>
+                        <p>Visualize rule-of-thirds, golden ratio, and other composition guides.</p>
+                        <div class="tool-preview">
+                            <div class="composition-preview" id="composition-preview"></div>
+                        </div>
+                        <div class="tool-footer">
+                            <a href="#" class="tool-button" data-tool="composition">Try It</a>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Tool 3 -->
+                    <div class="tool-card tm-card-3d featured">
+                        <div class="featured-tag">New</div>
+                        <div class="tool-icon">🌌</div>
+                        <h3>Vetra Photo AI</h3>
+                        <p>Our experimental AI tool that helps enhance your photos with intelligent suggestions.</p>
+                        <div class="tool-preview">
+                            <div class="ai-preview" id="ai-preview">
+                                <div class="ai-orb"></div>
+                            </div>
+                        </div>
+                        <div class="tool-footer">
+                            <a href="#" class="tool-button" data-tool="vetraAI">Try It</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="interactive-experiment tm-reveal">
+            <div class="container">
+                <div class="experiment-container">
+                    <h2>Photography Time Tunnel</h2>
+                    <p>Move your mouse to travel through our interactive time tunnel of photography history.</p>
+                    <div class="time-tunnel" id="time-tunnel"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="vetra-ai-container" id="vetra-ai">
+        <div class="vetra-ai-orb" id="vetra-orb">
+            <div class="orb-inner"></div>
+        </div>
+        <div class="vetra-ai-chat" id="vetra-chat">
+            <div class="chat-header">
+                <h3>Vetra AI</h3>
+                <div class="chat-close">×</div>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message assistant">
+                    <p>Hello! I'm Vetra, your photography assistant. Want to explore our fun tools?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Ask me about our tools...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Vetra Photography Club. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/transitions.js"></script>
+    <script src="../js/vetraAI.js"></script>
+
+    <script>
+        // Fun page specific JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            initColorWheel();
+            initCompositionGrid();
+            initTimeTunnel();
+            initToolButtons();
+        });
+
+        // Initialize the color wheel
+        function initColorWheel() {
+            const colorWheel = document.getElementById('color-wheel');
+            if (!colorWheel) return;
+
+            // Create a simple color wheel with canvas
+            const canvas = document.createElement('canvas');
+            canvas.width = 200;
+            canvas.height = 200;
+            colorWheel.appendChild(canvas);
+
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 80;
+
+            // Draw color wheel
+            for (let angle = 0; angle < 360; angle++) {
+                const startAngle = (angle - 2) * Math.PI / 180;
+                const endAngle = (angle + 2) * Math.PI / 180;
+
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                ctx.closePath();
+
+                // Calculate color based on angle
+                const hue = angle;
+                ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+                ctx.fill();
+            }
+
+            // Add inner circle
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.7, 0, Math.PI * 2);
+            ctx.fillStyle = '#232323';
+            ctx.fill();
+
+            // Add interactive indicator
+            canvas.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left - centerX;
+                const y = e.clientY - rect.top - centerY;
+                
+                // Calculate angle from center
+                const angle = Math.atan2(y, x) * 180 / Math.PI;
+                const hue = (angle + 360) % 360;
+                
+                // Calculate distance from center
+                const distance = Math.sqrt(x*x + y*y);
+                
+                // Only update if within the color wheel
+                if (distance < radius && distance > radius * 0.7) {
+                    // Clear and redraw wheel
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Redraw wheel
+                    for (let a = 0; a < 360; a++) {
+                        const startAngle = (a - 2) * Math.PI / 180;
+                        const endAngle = (a + 2) * Math.PI / 180;
+
+                        ctx.beginPath();
+                        ctx.moveTo(centerX, centerY);
+                        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                        ctx.closePath();
+
+                        const h = a;
+                        ctx.fillStyle = `hsl(${h}, 100%, 50%)`;
+                        ctx.fill();
+                    }
+                    
+                    // Redraw inner circle
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, radius * 0.7, 0, Math.PI * 2);
+                    ctx.fillStyle = '#232323';
+                    ctx.fill();
+                    
+                    // Draw indicator line
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.lineTo(centerX + Math.cos(angle * Math.PI / 180) * radius, 
+                               centerY + Math.sin(angle * Math.PI / 180) * radius);
+                    ctx.strokeStyle = 'white';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    
+                    // Update complementary color
+                    const complementary = (hue + 180) % 360;
+                    
+                    // Show colors
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, radius * 0.5, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+                    ctx.fill();
+                    
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, radius * 0.3, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsl(${complementary}, 100%, 50%)`;
+                    ctx.fill();
+                }
+            });
+        }
+
+        // Initialize composition grid preview
+        function initCompositionGrid() {
+            const compositionPreview = document.getElementById('composition-preview');
+            if (!compositionPreview) return;
+            
+            // Create canvas for composition grid
+            const canvas = document.createElement('canvas');
+            canvas.width = 200;
+            canvas.height = 150;
+            compositionPreview.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            
+            // Draw sample image background (gray rectangle)
+            ctx.fillStyle = '#444';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw rule of thirds grid
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.lineWidth = 1;
+            
+            // Horizontal lines
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height / 3);
+            ctx.lineTo(canvas.width, canvas.height / 3);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(0, (canvas.height / 3) * 2);
+            ctx.lineTo(canvas.width, (canvas.height / 3) * 2);
+            ctx.stroke();
+            
+            // Vertical lines
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 3, 0);
+            ctx.lineTo(canvas.width / 3, canvas.height);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo((canvas.width / 3) * 2, 0);
+            ctx.lineTo((canvas.width / 3) * 2, canvas.height);
+            ctx.stroke();
+            
+            // Draw intersection points (rule of thirds power points)
+            const drawIntersection = (x, y) => {
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(30, 144, 255, 0.8)';
+                ctx.fill();
+            };
+            
+            // Top left
+            drawIntersection(canvas.width / 3, canvas.height / 3);
+            // Top right
+            drawIntersection((canvas.width / 3) * 2, canvas.height / 3);
+            // Bottom left
+            drawIntersection(canvas.width / 3, (canvas.height / 3) * 2);
+            // Bottom right
+            drawIntersection((canvas.width / 3) * 2, (canvas.height / 3) * 2);
+        }
+
+        // Initialize time tunnel with Three.js
+        function initTimeTunnel() {
+            const timeTunnel = document.getElementById('time-tunnel');
+            if (!timeTunnel) return;
+
+            // Create scene
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, timeTunnel.clientWidth / timeTunnel.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(timeTunnel.clientWidth, timeTunnel.clientHeight);
+            timeTunnel.appendChild(renderer.domElement);
+            
+            // Create time tunnel geometry
+            const tunnelRadius = 5;
+            const tunnelLength = 20;
+            const tunnelSegments = 20;
+            
+            const tunnelGeometry = new THREE.CylinderGeometry(
+                tunnelRadius, tunnelRadius, tunnelLength, 
+                32, tunnelSegments, true
+            );
+            
+            // Invert the cylinder to see inside
+            tunnelGeometry.scale(-1, 1, 1);
+            
+            // Create tunnel material with gradient
+            const tunnelMaterial = new THREE.ShaderMaterial({
+                uniforms: {
+                    time: { value: 0 },
+                    color1: { value: new THREE.Color('#1e90ff') },
+                    color2: { value: new THREE.Color('#000000') }
+                },
+                vertexShader: `
+                    varying vec2 vUv;
+                    void main() {
+                        vUv = uv;
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    uniform float time;
+                    uniform vec3 color1;
+                    uniform vec3 color2;
+                    varying vec2 vUv;
+                    
+                    void main() {
+                        float noise = sin(vUv.y * 10.0 + time) * 0.25 + 0.75;
+                        vec3 color = mix(color1, color2, vUv.y);
+                        gl_FragColor = vec4(color * noise, 0.7);
+                    }
+                `,
+                transparent: true,
+                side: THREE.BackSide
+            });
+            
+            const tunnel = new THREE.Mesh(tunnelGeometry, tunnelMaterial);
+            scene.add(tunnel);
+            
+            // Add some particles in the tunnel
+            const particlesCount = 300;
+            const particlesGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particlesCount * 3);
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const radius = Math.random() * tunnelRadius * 0.8;
+                positions[i * 3] = Math.cos(angle) * radius;
+                positions[i * 3 + 1] = Math.random() * tunnelLength - tunnelLength / 2;
+                positions[i * 3 + 2] = Math.sin(angle) * radius;
+            }
+            
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.1,
+                color: 0xffffff,
+                transparent: true,
+                opacity: 0.8
+            });
+            
+            const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particles);
+            
+            // Position camera
+            camera.position.z = 0;
+            
+            // Animation
+            let mouseX = 0;
+            let mouseY = 0;
+            
+            timeTunnel.addEventListener('mousemove', (e) => {
+                const rect = timeTunnel.getBoundingClientRect();
+                mouseX = ((e.clientX - rect.left) / timeTunnel.clientWidth - 0.5) * 2;
+                mouseY = ((e.clientY - rect.top) / timeTunnel.clientHeight - 0.5) * 2;
+            });
+            
+            const animate = () => {
+                requestAnimationFrame(animate);
+                
+                // Update tunnel material time uniform
+                tunnelMaterial.uniforms.time.value += 0.02;
+                
+                // Rotate tunnel based on mouse position
+                tunnel.rotation.x = mouseY * 0.3;
+                tunnel.rotation.y = mouseX * 0.3;
+                
+                // Move particles
+                for (let i = 0; i < particlesCount; i++) {
+                    positions[i * 3 + 1] += 0.03;
+                    
+                    // Reset position if particle goes beyond the tunnel
+                    if (positions[i * 3 + 1] > tunnelLength / 2) {
+                        positions[i * 3 + 1] = -tunnelLength / 2;
+                    }
+                }
+                
+                particlesGeometry.attributes.position.needsUpdate = true;
+                
+                renderer.render(scene, camera);
+            };
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = timeTunnel.clientWidth / timeTunnel.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(timeTunnel.clientWidth, timeTunnel.clientHeight);
+            });
+        }
+
+        // Initialize tool buttons
+        function initToolButtons() {
+            const toolButtons = document.querySelectorAll('.tool-button');
+            
+            toolButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    const tool = button.getAttribute('data-tool');
+                    
+                    // Simulate tool activation
+                    button.innerHTML = 'Coming Soon';
+                    button.classList.add('disabled');
+                    
+                    // Add a message to the Vetra AI chat
+                    const chatMessages = document.getElementById('chat-messages');
+                    const vetraChat = document.getElementById('vetra-chat');
+                    
+                    if (chatMessages && vetraChat) {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.classList.add('message', 'assistant');
+                        
+                        let message = "";
+                        
+                        switch(tool) {
+                            case 'colorTheory':
+                                message = "Our Color Theory Explorer is coming soon! It will help you find perfect complementary colors for your photography compositions.";
+                                break;
+                            case 'composition':
+                                message = "The Composition Grid tool is in development. It will help you visualize rule-of-thirds, golden ratio, and other composition guides for your photos.";
+                                break;
+                            case 'vetraAI':
+                                message = "Vetra Photo AI is our most exciting upcoming feature. It will use AI to enhance your photos with intelligent suggestions based on professional techniques.";
+                                break;
+                            default:
+                                message = "This tool is coming soon! Check back later for updates.";
+                        }
+                        
+                        messageDiv.innerHTML = `<p>${message}</p>`;
+                        chatMessages.appendChild(messageDiv);
+                        
+                        // Show the chat
+                        vetraChat.classList.add('active');
+                        
+                        // Scroll to bottom
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }
+                });
+            });
+        }
+    </script>
+
+    <style>
+        /* Fun Page Specific Styles */
+        .fun-page {
+            overflow-x: hidden;
+        }
+        
+        .fun-tools {
+            padding: 50px 0 80px;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tool-card {
+            background: rgba(35, 35, 35, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            padding: 30px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-card.featured {
+            border: 1px solid rgba(30, 144, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.1);
+        }
+        
+        .featured-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .tool-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .tool-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .tool-preview {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            min-height: 150px;
+        }
+        
+        .tool-footer {
+            margin-top: auto;
+        }
+        
+        .tool-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
+        }
+        
+        .tool-button.disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Color wheel styles */
+        #color-wheel {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        /* Composition grid styles */
+        #composition-preview {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        /* AI preview styles */
+        .ai-preview {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ai-orb {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-color) 0%, rgba(18, 18, 18, 0) 70%);
+            animation: pulse 2s infinite;
+        }
+        
+        /* Time tunnel styles */
+        .interactive-experiment {
+            padding: 50px 0 100px;
+        }
+        
+        .experiment-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .experiment-container h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .experiment-container p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        .time-tunnel {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-card {
+                height: auto;
+            }
+            
+            .tool-preview {
+                min-height: 100px;
+            }
+            
+            .time-tunnel {
+                height: 200px;
+            }
+        }
+    </style>
+</body>
+</html> 

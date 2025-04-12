@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tips | Vetra Photography Club</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/timeMachine.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+</head>
+<body class="tips-page" data-scroll-container>
+    <div class="noise-overlay"></div>
+    <div class="three-container" id="background-canvas"></div>
+    
+    <header>
+        <div class="menu-button" id="menu-toggle">
+            <div class="menu-icon">☰</div>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-content">
+            <div class="menu-close">×</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="menu-link">Home</a></li>
+                    <li><a href="meetups.html" class="menu-link">Meetups</a></li>
+                    <li><a href="tips.html" class="menu-link current">Tips</a></li>
+                    <li><a href="fun.html" class="menu-link">Fun</a></li>
+                    <li><a href="contact.html" class="menu-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-header tm-reveal">
+            <div class="container">
+                <h1>Photography Tips</h1>
+                <p class="subtitle">Improve your skills with our expert photography advice</p>
+            </div>
+        </section>
+
+        <section class="tips-grid">
+            <div class="container">
+                <div class="grid-container tm-reveal-list">
+                    <!-- Tip 1 -->
+                    <div class="tip-card tm-card-3d">
+                        <div class="tip-icon">📷</div>
+                        <h3>Master the Exposure Triangle</h3>
+                        <div class="tip-content">
+                            <p>The three elements of exposure—aperture, shutter speed, and ISO—work together to create a properly exposed image.</p>
+                            <ul>
+                                <li><strong>Aperture (f/stop):</strong> Controls depth of field and how much light enters the lens</li>
+                                <li><strong>Shutter Speed:</strong> Determines how long the sensor is exposed to light</li>
+                                <li><strong>ISO:</strong> Adjusts the camera's sensitivity to light</li>
+                            </ul>
+                            <p>Balancing these three elements is key to achieving proper exposure while maintaining the creative aspects of your image.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tip 2 -->
+                    <div class="tip-card tm-card-3d">
+                        <div class="tip-icon">🌅</div>
+                        <h3>Golden Hour Photography</h3>
+                        <div class="tip-content">
+                            <p>The golden hour—the period shortly after sunrise or before sunset—produces a soft, warm light that enhances almost any subject.</p>
+                            <p>Tips for golden hour shooting:</p>
+                            <ul>
+                                <li>Plan your shoot in advance using apps that predict golden hour times</li>
+                                <li>Arrive early to set up your equipment</li>
+                                <li>Experiment with backlighting and silhouettes</li>
+                                <li>Use a slightly warming white balance (cloudy setting)</li>
+                                <li>Incorporate lens flare creatively</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Tip 3 -->
+                    <div class="tip-card tm-card-3d">
+                        <div class="tip-icon">🔍</div>
+                        <h3>Rule of Thirds</h3>
+                        <div class="tip-content">
+                            <p>The rule of thirds divides your frame into nine equal parts using two horizontal and two vertical lines. Placing key elements along these lines or at their intersections creates more balanced and engaging compositions.</p>
+                            <p>When to use it:</p>
+                            <ul>
+                                <li>Landscape photography (horizon on top or bottom third)</li>
+                                <li>Portrait photography (eyes along top third line)</li>
+                                <li>Any scene with a clear subject that benefits from asymmetrical placement</li>
+                            </ul>
+                            <p>Remember, it's a guideline, not a rule—knowing when to break it is just as important as knowing when to use it.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tip 4 -->
+                    <div class="tip-card tm-card-3d featured">
+                        <div class="featured-tag">Editor's Pick</div>
+                        <div class="tip-icon">🌃</div>
+                        <h3>Night Photography Essentials</h3>
+                        <div class="tip-content">
+                            <p>Capturing stunning night images requires specialized techniques and equipment:</p>
+                            <ul>
+                                <li><strong>Tripod:</strong> Essential for long exposures</li>
+                                <li><strong>Remote shutter release:</strong> Prevents camera shake</li>
+                                <li><strong>Manual focus:</strong> Autofocus struggles in low light</li>
+                                <li><strong>Shoot in RAW:</strong> Provides more flexibility in post-processing</li>
+                                <li><strong>Start with 30s, f/2.8, ISO 3200:</strong> Adjust from here based on results</li>
+                            </ul>
+                            <p>For astrophotography, use the "500 rule": your maximum shutter speed should be 500 divided by your lens's focal length to avoid star trails.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tip 5 -->
+                    <div class="tip-card tm-card-3d">
+                        <div class="tip-icon">👁️</div>
+                        <h3>Leading Lines</h3>
+                        <div class="tip-content">
+                            <p>Leading lines are compositional elements that guide the viewer's eye through the image toward the main subject. They create depth and add a dynamic quality to your photographs.</p>
+                            <p>Common leading lines in photography:</p>
+                            <ul>
+                                <li>Roads and pathways</li>
+                                <li>Fences and railings</li>
+                                <li>Shorelines and rivers</li>
+                                <li>Architectural elements</li>
+                                <li>Natural patterns and textures</li>
+                            </ul>
+                            <p>For maximum impact, position your lines to lead from the corners of the frame toward your subject.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tip 6 -->
+                    <div class="tip-card tm-card-3d">
+                        <div class="tip-icon">🖼️</div>
+                        <h3>Natural Framing</h3>
+                        <div class="tip-content">
+                            <p>Natural framing uses elements in the scene to create a frame around your subject, adding depth and drawing attention to the main focus of your image.</p>
+                            <p>Examples of natural frames:</p>
+                            <ul>
+                                <li>Doorways and windows</li>
+                                <li>Archways and tunnels</li>
+                                <li>Tree branches and foliage</li>
+                                <li>Rock formations</li>
+                                <li>Urban structures</li>
+                            </ul>
+                            <p>Frames don't need to be complete—even partial frames can effectively direct attention to your subject.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter-section tm-reveal">
+            <div class="container">
+                <div class="newsletter-card tm-glow">
+                    <h2>Get Weekly Tips</h2>
+                    <p>Subscribe to our newsletter for exclusive photography tips and early access to our workshops.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="cta-button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="vetra-ai-container" id="vetra-ai">
+        <div class="vetra-ai-orb" id="vetra-orb">
+            <div class="orb-inner"></div>
+        </div>
+        <div class="vetra-ai-chat" id="vetra-chat">
+            <div class="chat-header">
+                <h3>Vetra AI</h3>
+                <div class="chat-close">×</div>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message assistant">
+                    <p>Hello! I'm Vetra, your photography assistant. Need help with your photography techniques?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Ask me about photography...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Vetra Photography Club. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/transitions.js"></script>
+    <script src="../js/vetraAI.js"></script>
+
+    <style>
+        /* Tips Page Specific Styles */
+        .page-header {
+            padding: 180px 0 80px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tips-grid {
+            padding: 50px 0 100px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .tip-card {
+            background: rgba(35, 35, 35, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            padding: 30px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            height: auto;
+        }
+
+        .tip-card.featured {
+            border: 1px solid rgba(30, 144, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.1);
+        }
+
+        .featured-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .tip-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .tip-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .tip-content {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .tip-content p {
+            margin-bottom: 15px;
+        }
+
+        .tip-content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .tip-content ul li {
+            margin-bottom: 8px;
+            list-style-type: circle;
+        }
+
+        .tip-content strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        .newsletter-section {
+            padding: 0 0 100px;
+        }
+
+        .newsletter-card {
+            background: rgba(35, 35, 35, 0.5);
+            border-radius: 15px;
+            padding: 50px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .newsletter-card h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-card p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px 0 0 30px;
+            color: white;
+            font-family: var(--font-family);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .newsletter-form .cta-button {
+            border-radius: 0 30px 30px 0;
+            padding: 15px 30px;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                border-radius: 30px;
+                margin-bottom: 15px;
+            }
+
+            .newsletter-form .cta-button {
+                border-radius: 30px;
+            }
+        }
+    </style>
+</body>
+</html> 

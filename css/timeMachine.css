@@ -1,0 +1,191 @@
+/* Time Machine Style Transitions */
+:root {
+  --tm-transition-duration: 1200ms;
+  --tm-transition-easing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Page Transition Container */
+.tm-transition-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+/* Layers for the time machine effect */
+.tm-layer {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  left: -25%;
+  top: -25%;
+  background: rgba(18, 18, 18, 0.8);
+  transform-origin: center center;
+  transform: translateZ(0) scale(0.01) rotateX(15deg);
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+/* When transition is active */
+.tm-transition-active .tm-layer {
+  animation: timeLayer var(--tm-transition-duration) var(--tm-transition-easing) forwards;
+}
+
+/* Animation for each layer with delay */
+.tm-layer:nth-child(1) {
+  background: rgba(18, 18, 18, 0.9);
+  animation-delay: 0ms;
+}
+
+.tm-layer:nth-child(2) {
+  background: rgba(30, 144, 255, 0.4);
+  animation-delay: 100ms;
+}
+
+.tm-layer:nth-child(3) {
+  background: rgba(18, 18, 18, 0.8);
+  animation-delay: 200ms;
+}
+
+.tm-layer:nth-child(4) {
+  background: rgba(30, 144, 255, 0.2);
+  animation-delay: 300ms;
+}
+
+.tm-layer:nth-child(5) {
+  background: rgba(18, 18, 18, 1);
+  animation-delay: 400ms;
+}
+
+@keyframes timeLayer {
+  0% {
+    opacity: 0;
+    transform: translateZ(0) scale(0.01) rotateX(15deg);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateZ(2000px) scale(1.3) rotateX(5deg);
+  }
+}
+
+/* Page content transition */
+.tm-content {
+  transition: opacity var(--tm-transition-duration) var(--tm-transition-easing);
+}
+
+.tm-transition-active .tm-content {
+  opacity: 0;
+}
+
+/* Page Enter Animation */
+.tm-page-enter {
+  animation: pageEnter 1200ms var(--tm-transition-easing) forwards;
+}
+
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: scale(1.1) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Transition states for outgoing and incoming pages */
+.tm-page-out {
+  animation: pageOut 600ms var(--tm-transition-easing) forwards;
+}
+
+@keyframes pageOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* Reveal animation for page elements */
+.tm-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s var(--tm-transition-easing);
+}
+
+.tm-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveal for list items */
+.tm-reveal-list > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s var(--tm-transition-easing);
+}
+
+.tm-reveal-list.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tm-reveal-list.active > *:nth-child(1) { transition-delay: 0.1s; }
+.tm-reveal-list.active > *:nth-child(2) { transition-delay: 0.2s; }
+.tm-reveal-list.active > *:nth-child(3) { transition-delay: 0.3s; }
+.tm-reveal-list.active > *:nth-child(4) { transition-delay: 0.4s; }
+.tm-reveal-list.active > *:nth-child(5) { transition-delay: 0.5s; }
+.tm-reveal-list.active > *:nth-child(6) { transition-delay: 0.6s; }
+.tm-reveal-list.active > *:nth-child(7) { transition-delay: 0.7s; }
+.tm-reveal-list.active > *:nth-child(8) { transition-delay: 0.8s; }
+
+/* 3D Card effect for elements */
+.tm-card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--tm-transition-easing);
+  cursor: pointer;
+}
+
+.tm-card-3d:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Parallax effect for mouse movement */
+.tm-parallax-container {
+  perspective: 1000px;
+}
+
+.tm-parallax-item {
+  transform-style: preserve-3d;
+  transition: transform 0.1s var(--tm-transition-easing);
+}
+
+/* Apple-style blur effects for modals and overlays */
+.tm-blur {
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  transition: backdrop-filter 0.6s var(--tm-transition-easing),
+              -webkit-backdrop-filter 0.6s var(--tm-transition-easing);
+}
+
+/* Subtle glow effects */
+.tm-glow {
+  box-shadow: 0 0 20px rgba(30, 144, 255, 0.2);
+  transition: box-shadow 0.6s var(--tm-transition-easing);
+}
+
+.tm-glow:hover {
+  box-shadow: 0 0 30px rgba(30, 144, 255, 0.4);
+} 

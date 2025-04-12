@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meetups | Vetra Photography Club</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/timeMachine.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+</head>
+<body class="meetups-page" data-scroll-container>
+    <div class="noise-overlay"></div>
+    <div class="three-container" id="background-canvas"></div>
+    
+    <header>
+        <div class="menu-button" id="menu-toggle">
+            <div class="menu-icon">☰</div>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-content">
+            <div class="menu-close">×</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="menu-link">Home</a></li>
+                    <li><a href="meetups.html" class="menu-link current">Meetups</a></li>
+                    <li><a href="tips.html" class="menu-link">Tips</a></li>
+                    <li><a href="fun.html" class="menu-link">Fun</a></li>
+                    <li><a href="contact.html" class="menu-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-header tm-reveal">
+            <div class="container">
+                <h1>Upcoming Meetups</h1>
+                <p class="subtitle">Join us for our photography adventures and workshops</p>
+            </div>
+        </section>
+
+        <section class="meetups-grid">
+            <div class="container">
+                <div class="grid-container tm-reveal-list">
+                    <!-- Meetup Card 1 -->
+                    <div class="meetup-card tm-card-3d tm-parallax-container">
+                        <div class="card-date">
+                            <span class="month">MAR</span>
+                            <span class="day">15</span>
+                        </div>
+                        <div class="card-content tm-parallax-item" data-depth="0.2">
+                            <h3>Golden Hour Portrait Session</h3>
+                            <div class="meetup-details">
+                                <p class="location"><span class="icon">📍</span> Sunset Point Park</p>
+                                <p class="time"><span class="icon">🕔</span> 5:00 PM - 7:30 PM</p>
+                            </div>
+                            <p class="description">Capture stunning portraits during the magical golden hour light. We'll share techniques for natural light portraiture and posing.</p>
+                            <div class="card-footer">
+                                <span class="spots">12 spots left</span>
+                                <a href="#" class="join-button">Join this meetup</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meetup Card 2 -->
+                    <div class="meetup-card tm-card-3d tm-parallax-container">
+                        <div class="card-date featured">
+                            <span class="month">APR</span>
+                            <span class="day">02</span>
+                        </div>
+                        <div class="card-content tm-parallax-item" data-depth="0.2">
+                            <div class="featured-tag">Featured</div>
+                            <h3>Urban Night Photography</h3>
+                            <div class="meetup-details">
+                                <p class="location"><span class="icon">📍</span> Downtown Arts District</p>
+                                <p class="time"><span class="icon">🕔</span> 8:00 PM - 11:00 PM</p>
+                            </div>
+                            <p class="description">Explore the vibrant nightlife of the city through your lens. Learn long exposure techniques, light painting, and capturing city lights.</p>
+                            <div class="card-footer">
+                                <span class="spots">8 spots left</span>
+                                <a href="#" class="join-button">Join this meetup</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meetup Card 3 -->
+                    <div class="meetup-card tm-card-3d tm-parallax-container">
+                        <div class="card-date">
+                            <span class="month">APR</span>
+                            <span class="day">18</span>
+                        </div>
+                        <div class="card-content tm-parallax-item" data-depth="0.2">
+                            <h3>Macro Photography Workshop</h3>
+                            <div class="meetup-details">
+                                <p class="location"><span class="icon">📍</span> Botanical Gardens</p>
+                                <p class="time"><span class="icon">🕔</span> 10:00 AM - 1:00 PM</p>
+                            </div>
+                            <p class="description">Discover the hidden world of macro photography. Learn to capture stunning close-ups of flowers, insects, and small details of nature.</p>
+                            <div class="card-footer">
+                                <span class="spots">5 spots left</span>
+                                <a href="#" class="join-button">Join this meetup</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meetup Card 4 -->
+                    <div class="meetup-card tm-card-3d tm-parallax-container">
+                        <div class="card-date">
+                            <span class="month">MAY</span>
+                            <span class="day">05</span>
+                        </div>
+                        <div class="card-content tm-parallax-item" data-depth="0.2">
+                            <h3>Landscape Photography Hike</h3>
+                            <div class="meetup-details">
+                                <p class="location"><span class="icon">📍</span> Mountain Ridge Trail</p>
+                                <p class="time"><span class="icon">🕔</span> 6:30 AM - 12:00 PM</p>
+                            </div>
+                            <p class="description">Join us for a morning hike to capture breathtaking landscapes. We'll focus on composition, using filters, and capturing the morning light.</p>
+                            <div class="card-footer">
+                                <span class="spots">15 spots left</span>
+                                <a href="#" class="join-button">Join this meetup</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meetup Card 5 -->
+                    <div class="meetup-card tm-card-3d tm-parallax-container">
+                        <div class="card-date">
+                            <span class="month">MAY</span>
+                            <span class="day">20</span>
+                        </div>
+                        <div class="card-content tm-parallax-item" data-depth="0.2">
+                            <h3>Street Photography Walk</h3>
+                            <div class="meetup-details">
+                                <p class="location"><span class="icon">📍</span> Historic District</p>
+                                <p class="time"><span class="icon">🕔</span> 1:00 PM - 4:00 PM</p>
+                            </div>
+                            <p class="description">Explore the art of street photography. Learn techniques for candid shots, approaching subjects, and telling stories through your images.</p>
+                            <div class="card-footer">
+                                <span class="spots">10 spots left</span>
+                                <a href="#" class="join-button">Join this meetup</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meetup Card 6 -->
+                    <div class="meetup-card tm-card-3d tm-parallax-container">
+                        <div class="card-date featured">
+                            <span class="month">JUN</span>
+                            <span class="day">10</span>
+                        </div>
+                        <div class="card-content tm-parallax-item" data-depth="0.2">
+                            <div class="featured-tag">Featured</div>
+                            <h3>Astrophotography Night</h3>
+                            <div class="meetup-details">
+                                <p class="location"><span class="icon">📍</span> Dark Sky Observatory</p>
+                                <p class="time"><span class="icon">🕔</span> 9:00 PM - 1:00 AM</p>
+                            </div>
+                            <p class="description">Capture the wonders of the night sky. Learn techniques for photographing stars, the Milky Way, and creating stunning astro-landscapes.</p>
+                            <div class="card-footer">
+                                <span class="spots">7 spots left</span>
+                                <a href="#" class="join-button">Join this meetup</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="host-meetup tm-reveal">
+            <div class="container">
+                <div class="host-card tm-glow">
+                    <h2>Want to host a meetup?</h2>
+                    <p>Share your photography knowledge with our community by hosting your own meetup or workshop.</p>
+                    <a href="contact.html" class="cta-button">Propose a Meetup</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="vetra-ai-container" id="vetra-ai">
+        <div class="vetra-ai-orb" id="vetra-orb">
+            <div class="orb-inner"></div>
+        </div>
+        <div class="vetra-ai-chat" id="vetra-chat">
+            <div class="chat-header">
+                <h3>Vetra AI</h3>
+                <div class="chat-close">×</div>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message assistant">
+                    <p>Hello! I'm Vetra, your photography assistant. Need information about our meetups?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Ask me about meetups...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Vetra Photography Club. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/transitions.js"></script>
+    <script src="../js/vetraAI.js"></script>
+
+    <style>
+        /* Additional styles specific to the meetups page */
+        .page-header {
+            padding: 180px 0 80px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .meetups-grid {
+            padding: 50px 0 100px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .meetup-card {
+            background: rgba(35, 35, 35, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-date {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-date.featured {
+            background: var(--accent-color);
+        }
+
+        .card-date .month {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card-date .day {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .card-content {
+            padding: 30px 25px 25px;
+            position: relative;
+        }
+
+        .featured-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .meetup-card h3 {
+            font-size: 1.3rem;
+            margin: 15px 0 15px 45px;
+        }
+
+        .meetup-details {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .meetup-details p {
+            margin: 8px 0;
+        }
+
+        .meetup-details .icon {
+            margin-right: 8px;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spots {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .join-button {
+            background: rgba(30, 144, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(30, 144, 255, 0.3);
+        }
+
+        .join-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .host-meetup {
+            padding: 50px 0 100px;
+        }
+
+        .host-card {
+            background: rgba(35, 35, 35, 0.5);
+            border-radius: 15px;
+            padding: 50px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .host-card h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .host-card p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .host-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</body>
+</html> 
